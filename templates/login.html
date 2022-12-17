@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_block %}
+    <link rel="stylesheet" href="{% static 'assets/css/form.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/button.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/roomcards.css' %}" />
+{% endblock %}
+
+{% block title_block %}
+Login
+{% endblock %}
+
+{% block body_block %}
+<section id="banner">
+	<div>
+		<form id="login_form" method="post" action="{% url 'login' %}">
+			<h3>Login</h3>
+			{% csrf_token %}
+			<label for="username">Username</label>
+			<input name="username" type="text" placeholder="Email or Phone" id="username">
+
+			<label for="password">Password</label>
+			<input name="password" type="password" placeholder="Password" id="password">
+			{{login_message}}
+			<input type="submit" class="btn-info btn-1" value="Log In" />
+			<p>Didn’t have an account? Go to <a href="/register" >Register</a></p>
+		</form>
+	</div>
+</section>
+{% endblock %}

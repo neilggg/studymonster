@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_block %}
+    <link rel="stylesheet" href="{% static 'assets/css/form.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/button.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/roomcards.css' %}" />
+{% endblock %}
+
+{% block title_block %}
+Register
+{% endblock %}
+
+{% block body_block %}
+    <section id="banner">
+        {% if registered %}
+            <div class="content2">
+                <p>Thank you for registering!</p>
+                <p><a href="{% url 'login' %}">Return to the login page.</a></p>
+            </div>
+        {% else %}
+            <div>
+                <form id="register_form" style="height: 630px;" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
+                    <h3>Register</h3>
+
+                    {% csrf_token %}
+                    {{ user_form.as_p }}
+                    {{ profile_form.as_p }}
+
+                    <input type="submit" class="btn-info btn-3" value="Register" />
+                    <span>Already had an account? Go to <a href="/login">Log In</a></span>
+                </form>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}
